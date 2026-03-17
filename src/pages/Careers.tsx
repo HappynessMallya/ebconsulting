@@ -1,5 +1,7 @@
-import { Mail, Send } from 'lucide-react';
+import { Mail, Send, CheckCircle2 } from 'lucide-react';
 import { useState } from 'react';
+import SEO from '../components/SEO';
+import RevealSection from '../components/RevealSection';
 
 export default function Careers() {
   const [email, setEmail] = useState('');
@@ -7,80 +9,107 @@ export default function Careers() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // In a real application, this would send the email to a backend
     setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 3000);
+    setEmail('');
+    setTimeout(() => setSubmitted(false), 5000);
   };
 
   return (
-    <div className="pt-20 min-h-screen flex items-center justify-center bg-gradient-to-br from-primary/10 via-white to-secondary/20">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-2xl mx-auto text-center animate-fade-in">
-          <div className="bg-white rounded-2xl shadow-xl p-8 lg:p-12">
-            <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
-              <Mail className="h-10 w-10 text-primary" />
+    <div className="pt-[72px]">
+      <SEO
+        title="Careers — Evolve Board Consulting"
+        description="Join Evolve Board Consulting — a team of governance professionals transforming board leadership across East Africa."
+        keywords="governance careers Tanzania, board consulting jobs, Evolve Board Consulting careers"
+      />
+
+      {/* ─── PAGE HERO ───────────────────────────────────────────────────── */}
+      <section className="relative bg-navy py-24 lg:py-32 overflow-hidden">
+        <div className="absolute inset-0 bg-dot-grid" />
+        <div className="absolute inset-0 bg-gradient-to-r from-primary/20 via-transparent to-transparent" />
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <RevealSection>
+            <div className="flex items-center gap-3 mb-6">
+              <span className="block w-8 h-px bg-secondary flex-shrink-0" />
+              <span className="eyebrow">Careers</span>
             </div>
-            <h1 className="text-4xl lg:text-5xl font-bold text-charcoal mb-6">
-              Careers Coming Soon
+            <h1 className="text-display-lg lg:text-display-xl font-bold text-white leading-tight mb-6 max-w-3xl">
+              Build your career in governance advisory.
             </h1>
-            <p className="text-lg text-neutral-grey leading-relaxed mb-8">
-              We're building an exceptional team of governance professionals. Join us in
-              transforming organizational governance across East Africa.
+            <p className="text-base lg:text-lg text-white/55 max-w-xl leading-relaxed">
+              We're building an exceptional team of governance professionals committed to
+              transforming board leadership across East Africa.
             </p>
-            <p className="text-neutral-grey mb-8">
-              Be the first to know when we post new opportunities. Subscribe to our career
-              notifications below.
-            </p>
+          </RevealSection>
+        </div>
+      </section>
 
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div className="flex flex-col sm:flex-row gap-4">
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Enter your email address"
-                  required
-                  className="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
-                />
-                <button
-                  type="submit"
-                  className="px-6 py-3 bg-primary text-white rounded-lg font-semibold hover:bg-primary-dark transition-colors flex items-center justify-center"
-                >
-                  {submitted ? (
-                    <>
-                      <span className="mr-2">Subscribed!</span>
-                    </>
-                  ) : (
-                    <>
-                      Subscribe
-                      <Send className="ml-2 h-5 w-5" />
-                    </>
-                  )}
-                </button>
+      {/* ─── COMING SOON ─────────────────────────────────────────────────── */}
+      <section className="bg-white py-24 lg:py-32">
+        <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
+          <RevealSection>
+            <div className="text-center mb-10">
+              <div className="w-16 h-16 bg-primary/8 rounded-full flex items-center justify-center mx-auto mb-6">
+                <Mail className="w-8 h-8 text-primary" />
               </div>
-            </form>
-
-            {submitted && (
-              <p className="mt-4 text-sm text-primary animate-fade-in">
-                Thank you! We'll notify you when new opportunities become available.
+              <span className="eyebrow mb-4 block">Open Positions</span>
+              <h2 className="text-display-sm font-bold text-ink mb-5 leading-tight">
+                Opportunities coming soon
+              </h2>
+              <p className="text-base text-ink-muted leading-relaxed">
+                We don't currently have any open positions listed, but we're always interested in
+                hearing from talented governance professionals. Register below to be notified when
+                new opportunities are available.
               </p>
-            )}
+            </div>
 
-            <div className="mt-12 pt-8 border-t border-gray-200">
-              <p className="text-sm text-neutral-grey">
-                For immediate inquiries, please contact us at{' '}
+            <div className="bg-surface-soft border border-gray-100 rounded-xl p-8">
+              {submitted ? (
+                <div className="text-center py-4">
+                  <CheckCircle2 className="w-10 h-10 text-green-500 mx-auto mb-3" />
+                  <p className="text-sm font-semibold text-ink mb-1">You're on the list</p>
+                  <p className="text-xs text-ink-muted">We'll notify you when new roles are available.</p>
+                </div>
+              ) : (
+                <form onSubmit={handleSubmit}>
+                  <label htmlFor="career-email" className="block text-xs font-semibold uppercase tracking-wider text-ink-muted mb-2">
+                    Email Address
+                  </label>
+                  <div className="flex flex-col sm:flex-row gap-3">
+                    <input
+                      id="career-email"
+                      type="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder="your@email.com"
+                      required
+                      className="flex-1 px-4 py-3 bg-white border border-gray-200 rounded text-sm text-ink placeholder-ink-subtle focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/20 transition-colors"
+                    />
+                    <button
+                      type="submit"
+                      className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-primary text-white text-sm font-semibold rounded hover:bg-primary-dark transition-colors flex-shrink-0"
+                    >
+                      Notify Me
+                      <Send className="w-4 h-4" />
+                    </button>
+                  </div>
+                </form>
+              )}
+            </div>
+
+            <div className="mt-8 pt-8 border-t border-gray-100 text-center">
+              <p className="text-sm text-ink-muted">
+                For immediate enquiries, email us at{' '}
                 <a
-                  href="mailto:careers@evolveboardconsulting.com"
-                  className="text-primary hover:text-primary-dark font-semibold"
+                  href="mailto:boards@ebconsulting.co.tz"
+                  className="text-primary font-semibold hover:text-primary-dark transition-colors"
                 >
-                  careers@evolveboardconsulting.com
+                  boards@ebconsulting.co.tz
                 </a>
               </p>
             </div>
-          </div>
+          </RevealSection>
         </div>
-      </div>
+      </section>
     </div>
   );
 }
-

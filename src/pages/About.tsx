@@ -1,175 +1,311 @@
-import { Quote, Target, Eye, Award, TrendingUp, Users } from 'lucide-react';
-import ImageUploadPlaceholder from '../components/ImageUploadPlaceholder';
+import { Link } from 'react-router-dom';
+import { ArrowRight, Target, Eye, Compass, CheckCircle2 } from 'lucide-react';
+import SEO from '../components/SEO';
+import RevealSection from '../components/RevealSection';
+
+const pvm = [
+  {
+    icon: Target,
+    label: 'Our Purpose',
+    text: 'To contribute to the improvement of boards\' effectiveness for the economic growth of East Africa.',
+  },
+  {
+    icon: Eye,
+    label: 'Our Vision',
+    text: 'To become a key strategic advisor for boards in East Africa on matters of governance, people, and culture.',
+  },
+  {
+    icon: Compass,
+    label: 'Our Mission',
+    text: 'To provide relevant, up-to-date, and practical board development programs, and to offer cutting-edge advice to boards on governance, people, and culture.',
+  },
+];
+
+const values = [
+  {
+    number: '01',
+    title: 'Commitment',
+    description:
+      'We honor our commitment to clients, to each other, and to the firm. We take ownership of our work and hold ourselves accountable for results.',
+  },
+  {
+    number: '02',
+    title: 'Teamwork',
+    description:
+      'We recognize that people drive success. We work together — as a firm and with our clients — to share knowledge, foster innovation, solve problems, and deliver quality results.',
+  },
+  {
+    number: '03',
+    title: 'Integrity',
+    description:
+      'We behave with the highest degree of professionalism, integrity, and courtesy in our actions with each other and our clients.',
+  },
+  {
+    number: '04',
+    title: 'Trust',
+    description:
+      'We are honest and maintain open communication with our clients and with each other within the firm.',
+  },
+];
+
+const stats = [
+  { value: '35+', label: 'Years of experience in governance, strategy, and board leadership' },
+  { value: '50+', label: 'Organizations served across East Africa and beyond' },
+  { value: '100+', label: 'Board training programmes successfully delivered' },
+  { value: '500+', label: 'Board members and executives trained' },
+];
+
+const governanceApproach = [
+  'Compliance with regulatory and legal frameworks',
+  'Value-driven, purpose-led board leadership',
+  'Cultural transformation for lasting institutional change',
+  'Accountability structures that inspire stakeholder trust',
+  'Transparency at every governance level',
+  'Strategic decision-making with ethical grounding',
+];
 
 export default function About() {
   return (
-    <div className="pt-20">
-      {/* Hero */}
-      <section className="py-16 lg:py-24 bg-gradient-to-br from-primary/10 via-white to-secondary/20">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto text-center animate-fade-in">
-            <h1 className="text-4xl lg:text-5xl font-bold text-charcoal mb-6">
-              About Evolve Board Consulting
+    <div className="pt-[72px]">
+      <SEO
+        title="About Us — Evolve Board Consulting"
+        description="Learn about Evolve Board Consulting — our purpose, vision, mission, and core values. A professional advisory firm building effective, ethical boards across East Africa."
+        keywords="about evolve board consulting, governance advisory, corporate governance Tanzania, board leadership purpose vision mission"
+      />
+
+      {/* ─── PAGE HERO ───────────────────────────────────────────────────── */}
+      <section className="relative bg-navy py-24 lg:py-32 overflow-hidden">
+        <div className="absolute inset-0 bg-dot-grid" />
+        <div className="absolute inset-0 bg-gradient-to-r from-primary/20 via-transparent to-transparent" />
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <RevealSection>
+            <div className="flex items-center gap-3 mb-6">
+              <span className="block w-8 h-px bg-secondary flex-shrink-0" />
+              <span className="eyebrow">About Our Firm</span>
+            </div>
+            <h1 className="text-display-lg lg:text-display-xl font-bold text-white leading-tight mb-6 max-w-3xl">
+              A governance firm built on purpose, expertise, and trust.
             </h1>
-            <p className="text-xl text-neutral-grey leading-relaxed">
-              Leading governance advisory firm specializing in board development, training, and
-              strategic oversight.
+            <p className="text-base lg:text-lg text-white/55 max-w-2xl leading-relaxed">
+              Evolve Board Consulting is a professional advisory firm dedicated to improving
+              board effectiveness and governance across East Africa — one institution at a time.
             </p>
+          </RevealSection>
+        </div>
+      </section>
+
+      {/* ─── WHO WE ARE ──────────────────────────────────────────────────── */}
+      <section className="bg-white py-24 lg:py-32">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
+            <RevealSection>
+              <span className="eyebrow mb-4 block">Our Story</span>
+              <h2 className="text-display-md font-bold text-ink leading-tight mb-6">
+                Uniquely positioned to deliver governance impact
+              </h2>
+              <p className="text-base text-ink-muted leading-relaxed mb-5">
+                Evolve Board Consulting was founded to address a critical gap in the East African
+                governance landscape — the need for specialized, high-quality advisory services
+                that combine global best practices with deep local context.
+              </p>
+              <p className="text-base text-ink-muted leading-relaxed mb-5">
+                Our firm comprises highly qualified professionals who have led governance
+                transformations at major institutions across Africa. We work with listed companies,
+                private enterprises, public sector entities, and donor-funded organizations to
+                build the governance infrastructure that enables sustainable, ethical success.
+              </p>
+              <p className="text-base text-ink-muted leading-relaxed">
+                We are not generalists. Governance is what we do — exclusively and exceptionally.
+              </p>
+            </RevealSection>
+
+            <RevealSection delay={150}>
+              <div className="bg-surface-soft rounded-xl p-8 lg:p-10 border border-gray-100">
+                <h3 className="text-sm font-semibold uppercase tracking-wider text-ink mb-6">
+                  Our Governance Approach
+                </h3>
+                <ul className="space-y-3 mb-8">
+                  {governanceApproach.map((item, i) => (
+                    <li key={i} className="flex items-start gap-3">
+                      <CheckCircle2 className="w-4 h-4 text-secondary mt-0.5 flex-shrink-0" />
+                      <span className="text-sm text-ink-muted">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+                <span className="section-rule block" />
+              </div>
+            </RevealSection>
           </div>
         </div>
       </section>
 
-      {/* Mission & Vision */}
-      <section className="py-16 lg:py-24 bg-white">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 max-w-6xl mx-auto">
-            <div className="animate-slide-in">
-              <div className="flex items-center mb-6">
-                <div className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center mr-4">
-                  <Target className="h-6 w-6 text-white" />
+      {/* ─── PURPOSE / VISION / MISSION ──────────────────────────────────── */}
+      <section className="bg-surface-soft py-24 lg:py-32 border-y border-gray-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <RevealSection className="mb-16 text-center">
+            <span className="eyebrow mb-4 block">What Drives Us</span>
+            <h2 className="text-display-md font-bold text-ink leading-tight">
+              Purpose, Vision &amp; Mission
+            </h2>
+          </RevealSection>
+
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            {pvm.map((item, i) => (
+              <RevealSection key={i} delay={i * 100}>
+                <div className="relative bg-white rounded-xl border border-gray-100 p-8 lg:p-10 h-full overflow-hidden group hover:border-primary/30 hover:shadow-lg transition-all duration-300">
+                  {/* Large number watermark */}
+                  <span className="absolute top-4 right-6 text-[80px] font-black text-gray-50 leading-none select-none group-hover:text-primary/5 transition-colors">
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
+
+                  <div className="w-11 h-11 bg-primary rounded-lg flex items-center justify-center mb-6">
+                    <item.icon className="w-5 h-5 text-white" />
+                  </div>
+
+                  <h3 className="text-xs font-bold uppercase tracking-widest text-secondary mb-3">
+                    {item.label}
+                  </h3>
+                  <p className="text-base text-ink leading-relaxed font-medium relative z-10">
+                    {item.text}
+                  </p>
                 </div>
-                <h2 className="text-3xl font-bold text-charcoal">Our Mission</h2>
-              </div>
-              <p className="text-lg text-neutral-grey leading-relaxed mb-4">
-                To empower organizations across East Africa with world-class governance practices
-                that drive sustainable growth, ethical leadership, and stakeholder value creation.
-              </p>
-              <p className="text-lg text-neutral-grey leading-relaxed">
-                We are committed to building stronger boards that make better decisions, manage risk
-                effectively, and create lasting positive impact in their communities and industries.
-              </p>
-            </div>
-            <div className="animate-slide-in" style={{ animationDelay: '0.2s' }}>
-              <div className="flex items-center mb-6">
-                <div className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center mr-4">
-                  <Eye className="h-6 w-6 text-white" />
-                </div>
-                <h2 className="text-3xl font-bold text-charcoal">Our Vision</h2>
-              </div>
-              <p className="text-lg text-neutral-grey leading-relaxed mb-4">
-                To be the premier governance advisory firm in East Africa, recognized for our
-                expertise, integrity, and transformative impact on organizational governance.
-              </p>
-              <p className="text-lg text-neutral-grey leading-relaxed">
-                We envision a future where every organization in the region operates with
-                excellence in governance, setting new standards for accountability, transparency,
-                and strategic oversight.
-              </p>
-            </div>
+              </RevealSection>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Quote from Dr. Sallu */}
-      <section className="py-16 lg:py-24 bg-gray-50">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto animate-fade-in">
-            <Quote className="h-12 w-12 text-primary mx-auto mb-6" />
-            <blockquote className="text-2xl lg:text-3xl text-charcoal font-medium mb-6 italic text-center leading-relaxed">
-              "Effective governance is not just about compliance—it's about creating frameworks
-              that enable organizations to thrive, innovate, and serve their stakeholders with
-              excellence. At Evolve Board Consulting, we believe that strong governance is the
-              foundation of sustainable success."
-            </blockquote>
-            <p className="text-center text-neutral-grey text-lg font-semibold">
-              — Dr. Mike Sallu, Principal Consultant
+      {/* ─── IMPACT STATS ────────────────────────────────────────────────── */}
+      <section className="bg-primary py-24 lg:py-28 relative overflow-hidden">
+        <div className="absolute inset-0 bg-dot-grid opacity-40" />
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <RevealSection className="mb-16 text-center">
+            <span className="eyebrow mb-4 block text-secondary">Our Impact</span>
+            <h2 className="text-display-md font-bold text-white leading-tight">
+              Measurable results, lasting impact
+            </h2>
+          </RevealSection>
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+            {stats.map((stat, i) => (
+              <RevealSection key={i} delay={i * 80}>
+                <div className="border-t border-white/15 pt-6">
+                  <div className="text-[3rem] lg:text-[3.5rem] font-bold text-white leading-none mb-3 tracking-tight">
+                    {stat.value}
+                  </div>
+                  <p className="text-sm text-white/50 leading-relaxed">{stat.label}</p>
+                </div>
+              </RevealSection>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─── CORE VALUES ─────────────────────────────────────────────────── */}
+      <section className="bg-navy py-24 lg:py-32 relative overflow-hidden">
+        <div className="absolute inset-0 bg-dot-grid opacity-50" />
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <RevealSection className="mb-16">
+            <span className="eyebrow mb-4 block text-secondary">Core Values</span>
+            <h2 className="text-display-md font-bold text-white leading-tight max-w-2xl">
+              The principles that guide everything we do
+            </h2>
+          </RevealSection>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            {values.map((value, i) => (
+              <RevealSection key={i} delay={i * 80}>
+                <div className="border border-white/10 rounded-xl p-8 hover:border-secondary/40 hover:bg-white/3 transition-all duration-300 group">
+                  <div className="flex items-start gap-5">
+                    <span className="text-4xl font-black text-white/8 leading-none flex-shrink-0 group-hover:text-secondary/20 transition-colors">
+                      {value.number}
+                    </span>
+                    <div>
+                      <h3 className="text-lg font-bold text-white mb-3">{value.title}</h3>
+                      <p className="text-sm text-white/50 leading-relaxed">{value.description}</p>
+                    </div>
+                  </div>
+                </div>
+              </RevealSection>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─── WHO WE WORK WITH ────────────────────────────────────────────── */}
+      <section className="bg-white py-24 lg:py-28">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <RevealSection>
+              <span className="eyebrow mb-4 block">Who We Work With</span>
+              <h2 className="text-display-md font-bold text-ink leading-tight mb-6">
+                Serving organizations across sectors
+              </h2>
+              <p className="text-base text-ink-muted leading-relaxed mb-8">
+                Our clients span the full spectrum of organizational types — from publicly listed
+                companies and financial institutions, to government ministries, public parastatals,
+                NGOs, and donor-funded development programs.
+              </p>
+              <Link
+                to="/contact"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-white text-sm font-semibold rounded hover:bg-primary-dark transition-colors group"
+              >
+                Start a Conversation
+                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+              </Link>
+            </RevealSection>
+
+            <RevealSection delay={120}>
+              <div className="grid grid-cols-2 gap-3">
+                {[
+                  'Listed Companies', 'Private Enterprises',
+                  'Financial Institutions', 'Insurance Firms',
+                  'Government Ministries', 'Public Parastatals',
+                  'NGOs & Foundations', 'Donor-Funded Programs',
+                  'Healthcare Organizations', 'Educational Institutions',
+                ].map((sector) => (
+                  <div
+                    key={sector}
+                    className="bg-surface-soft border border-gray-100 rounded-lg px-4 py-3 text-sm font-medium text-ink hover:border-primary/30 hover:text-primary transition-colors duration-200"
+                  >
+                    {sector}
+                  </div>
+                ))}
+              </div>
+            </RevealSection>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── CTA ─────────────────────────────────────────────────────────── */}
+      <section className="bg-surface-soft border-t border-gray-100 py-20 lg:py-24">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <RevealSection>
+            <span className="eyebrow mb-4 block">Partner With Us</span>
+            <h2 className="text-display-md font-bold text-ink mb-5 leading-tight">
+              Ready to elevate your governance?
+            </h2>
+            <p className="text-base text-ink-muted mb-8 max-w-xl mx-auto leading-relaxed">
+              Let's discuss how Evolve Board Consulting can help your organization build a board
+              that drives accountability, transparency, and long-term value.
             </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Photo Area */}
-      <section className="py-16 lg:py-24 bg-white">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="aspect-video bg-gray-100 rounded-xl overflow-hidden">
-                <ImageUploadPlaceholder label="Team Photo" />
-              </div>
-              <div className="aspect-video bg-gray-100 rounded-xl overflow-hidden">
-                <ImageUploadPlaceholder label="Office Photo" />
-              </div>
+            <div className="flex flex-col sm:flex-row justify-center gap-4">
+              <Link
+                to="/contact"
+                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-primary text-white text-sm font-semibold rounded hover:bg-primary-dark transition-colors"
+              >
+                Contact Us
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+              <Link
+                to="/services"
+                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 border border-gray-200 text-ink text-sm font-semibold rounded hover:border-primary hover:text-primary transition-colors"
+              >
+                Explore Services
+              </Link>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Timeline / Impact Highlights */}
-      <section className="py-16 lg:py-24 bg-primary/5">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-12 animate-fade-in">
-              <h2 className="text-3xl lg:text-4xl font-bold text-charcoal mb-4">
-                Our Impact
-              </h2>
-              <p className="text-lg text-neutral-grey">
-                Key milestones and governance impact highlights
-              </p>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div className="bg-white rounded-xl p-8 shadow-md text-center animate-slide-up">
-                <Award className="h-12 w-12 text-primary mx-auto mb-4" />
-                <h3 className="text-2xl font-bold text-charcoal mb-2">50+</h3>
-                <p className="text-neutral-grey">Organizations Served</p>
-              </div>
-              <div className="bg-white rounded-xl p-8 shadow-md text-center animate-slide-up" style={{ animationDelay: '0.1s' }}>
-                <TrendingUp className="h-12 w-12 text-primary mx-auto mb-4" />
-                <h3 className="text-2xl font-bold text-charcoal mb-2">100+</h3>
-                <p className="text-neutral-grey">Training Programs Delivered</p>
-              </div>
-              <div className="bg-white rounded-xl p-8 shadow-md text-center animate-slide-up" style={{ animationDelay: '0.2s' }}>
-                <Users className="h-12 w-12 text-primary mx-auto mb-4" />
-                <h3 className="text-2xl font-bold text-charcoal mb-2">500+</h3>
-                <p className="text-neutral-grey">Board Members Trained</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Governance Impact Highlights */}
-      <section className="py-16 lg:py-24 bg-white">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-12 animate-fade-in">
-              <h2 className="text-3xl lg:text-4xl font-bold text-charcoal mb-4">
-                Governance Excellence
-              </h2>
-            </div>
-            <div className="space-y-6 animate-fade-in">
-              <div className="bg-gray-50 rounded-lg p-6 border-l-4 border-primary">
-                <h3 className="text-xl font-semibold text-charcoal mb-2">
-                  Enhanced Board Effectiveness
-                </h3>
-                <p className="text-neutral-grey leading-relaxed">
-                  Our comprehensive board development programs have helped organizations improve
-                  decision-making processes, enhance strategic oversight, and strengthen board
-                  dynamics.
-                </p>
-              </div>
-              <div className="bg-gray-50 rounded-lg p-6 border-l-4 border-primary">
-                <h3 className="text-xl font-semibold text-charcoal mb-2">
-                  Regulatory Compliance
-                </h3>
-                <p className="text-neutral-grey leading-relaxed">
-                  We assist organizations in navigating complex regulatory environments, ensuring
-                  full compliance with governance standards and best practices.
-                </p>
-              </div>
-              <div className="bg-gray-50 rounded-lg p-6 border-l-4 border-primary">
-                <h3 className="text-xl font-semibold text-charcoal mb-2">
-                  Strategic Alignment
-                </h3>
-                <p className="text-neutral-grey leading-relaxed">
-                  Our strategic planning services help boards align governance practices with
-                  organizational objectives, driving sustainable growth and value creation.
-                </p>
-              </div>
-            </div>
-          </div>
+          </RevealSection>
         </div>
       </section>
     </div>
   );
 }
-

@@ -2,28 +2,33 @@ import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 
+const navLinks = [
+  { path: '/about', label: 'About' },
+  { path: '/services', label: 'Services' },
+  { path: '/consultants', label: 'Leadership' },
+  { path: '/training', label: 'Training' },
+  { path: '/careers', label: 'Careers' },
+];
+
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
-    window.addEventListener('scroll', handleScroll);
+    const handleScroll = () => setIsScrolled(window.scrollY > 20);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navLinks = [
-    { path: '/', label: 'Home' },
-    { path: '/about', label: 'About Us' },
-    { path: '/services', label: 'Services' },
-    { path: '/training', label: 'Training' },
-    { path: '/consultants', label: 'Consultants' },
-    { path: '/careers', label: 'Careers' },
-    { path: '/contact', label: 'Contact' },
-  ];
+  useEffect(() => {
+    setIsOpen(false);
+  }, [location.pathname]);
+
+  useEffect(() => {
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+    return () => { document.body.style.overflow = ''; };
+  }, [isOpen]);
 
   const isActive = (path: string) => location.pathname === path;
 
@@ -31,82 +36,92 @@ export default function Header() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? 'bg-white shadow-md'
-          : 'bg-white/95 backdrop-blur-sm'
+          ? 'bg-white shadow-[0_1px_24px_rgba(0,0,0,0.08)]'
+          : 'bg-white border-b border-gray-100'
       }`}
     >
-      <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-[72px]">
+
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-3 group">
+          <Link to="/" className="flex-shrink-0 flex items-center group" aria-label="Evolve Board Consulting home">
             <img
               src="/images/logo.webp"
-              alt="Evolve Board Consulting Logo"
-              className="h-6 w-auto group-hover:opacity-90 transition-opacity"
+              alt="Evolve Board Consulting"
+              className="h-5 w-auto transition-opacity duration-200 group-hover:opacity-85"
             />
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-1">
+          <nav className="hidden lg:flex items-center gap-7" aria-label="Main navigation">
             {navLinks.map((link) => (
               <Link
                 key={link.path}
                 to={link.path}
-                className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                className={`relative text-[13.5px] font-medium pb-0.5 transition-colors duration-200 ${
                   isActive(link.path)
-                    ? 'text-primary bg-secondary/30'
-                    : 'text-neutral-grey hover:text-primary hover:bg-secondary/20'
+                    ? 'text-primary'
+                    : 'text-ink-muted hover:text-ink'
                 }`}
               >
                 {link.label}
+                {isActive(link.path) && (
+                  <span className="absolute -bottom-1 left-0 right-0 h-[2px] bg-secondary rounded-full" />
+                )}
               </Link>
             ))}
+          </nav>
+
+          {/* Right: CTA + Mobile toggle */}
+          <div className="flex items-center gap-4">
             <Link
               to="/contact"
-              className="ml-4 px-6 py-2 bg-secondary text-white rounded-lg text-sm font-medium hover:bg-secondary-dark transition-colors shadow-md hover:shadow-lg"
+              className="hidden lg:inline-flex items-center gap-2 px-5 py-2.5 bg-primary text-white text-[13.5px] font-semibold rounded hover:bg-primary-dark transition-colors duration-200"
             >
-              Work With Us
+              Get in Touch
             </Link>
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="lg:hidden flex items-center justify-center w-9 h-9 text-ink-muted hover:text-ink transition-colors"
+              aria-label={isOpen ? 'Close menu' : 'Open menu'}
+              aria-expanded={isOpen}
+            >
+              {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            </button>
           </div>
-
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden p-2 text-neutral-grey hover:text-primary transition-colors"
-            aria-label="Toggle menu"
-          >
-            {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          </button>
         </div>
+      </div>
 
-        {/* Mobile Navigation */}
-        {isOpen && (
-          <div className="lg:hidden py-4 border-t border-gray-200 animate-fade-in">
-            {navLinks.map((link) => (
-              <Link
-                key={link.path}
-                to={link.path}
-                onClick={() => setIsOpen(false)}
-                className={`block px-4 py-3 rounded-lg text-sm font-medium transition-colors ${
-                  isActive(link.path)
-                    ? 'text-primary bg-secondary/30'
-                    : 'text-neutral-grey hover:text-primary hover:bg-secondary/20'
-                }`}
-              >
-                {link.label}
-              </Link>
-            ))}
+      {/* Mobile Navigation Drawer */}
+      <div
+        className={`lg:hidden bg-white border-t border-gray-100 overflow-hidden transition-all duration-300 ${
+          isOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'
+        }`}
+      >
+        <nav className="max-w-7xl mx-auto px-4 py-5 space-y-1" aria-label="Mobile navigation">
+          {navLinks.map((link) => (
+            <Link
+              key={link.path}
+              to={link.path}
+              className={`flex items-center px-4 py-3 rounded-lg text-sm font-medium transition-colors ${
+                isActive(link.path)
+                  ? 'text-primary bg-primary-50'
+                  : 'text-ink-muted hover:text-ink hover:bg-surface-soft'
+              }`}
+            >
+              {link.label}
+            </Link>
+          ))}
+          <div className="pt-3">
             <Link
               to="/contact"
-              onClick={() => setIsOpen(false)}
-              className="block mt-2 mx-4 px-6 py-2 bg-secondary text-white rounded-lg text-sm font-medium text-center hover:bg-secondary-dark transition-colors shadow-md"
+              className="flex items-center justify-center w-full px-4 py-3 bg-primary text-white text-sm font-semibold rounded hover:bg-primary-dark transition-colors"
             >
-              Work With Us
+              Get in Touch
             </Link>
           </div>
-        )}
-      </nav>
+        </nav>
+      </div>
     </header>
   );
 }
-

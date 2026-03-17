@@ -1,235 +1,339 @@
 import { useState } from 'react';
-import { Mail, Phone, MapPin, Send, CheckCircle } from 'lucide-react';
+import { MapPin, Phone, Mail, Send, CheckCircle2, Clock } from 'lucide-react';
+import SEO from '../components/SEO';
+import RevealSection from '../components/RevealSection';
+
+type FormData = {
+  name: string;
+  organization: string;
+  email: string;
+  phone: string;
+  subject: string;
+  message: string;
+};
+
+const initialForm: FormData = {
+  name: '',
+  organization: '',
+  email: '',
+  phone: '',
+  subject: '',
+  message: '',
+};
+
+const contactDetails = [
+  {
+    icon: MapPin,
+    label: 'Office',
+    lines: [
+      '1st Floor, C&G Plaza',
+      'Mwai Kibaki Road, Mikocheni',
+      'Dar es Salaam, Tanzania',
+    ],
+  },
+  {
+    icon: Phone,
+    label: 'Phone',
+    lines: ['+255 754 000 091', '+255 673 290 000', '+255 745 719 942'],
+    links: ['tel:+255754000091', 'tel:+255673290000', 'tel:+255745719942'],
+  },
+  {
+    icon: Mail,
+    label: 'Email',
+    lines: ['mike.sallu@ebconsulting.co.tz', 'boards@ebconsulting.co.tz'],
+    links: [
+      'mailto:mike.sallu@ebconsulting.co.tz',
+      'mailto:boards@ebconsulting.co.tz',
+    ],
+  },
+  {
+    icon: Clock,
+    label: 'Office Hours',
+    lines: ['Monday – Friday', '8:00 AM – 5:00 PM EAT'],
+  },
+];
+
+const subjectOptions = [
+  'Board Development Planning',
+  'Board Training Programme',
+  'Performance Evaluation',
+  'Governance Audit',
+  'Strategic Planning',
+  'General Enquiry',
+  'Other',
+];
 
 export default function Contact() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    subject: '',
-    message: '',
-  });
+  const [form, setForm] = useState<FormData>(initialForm);
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) => {
+    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // In a real application, this would send the form data to a backend
-    console.log('Form submitted:', formData);
-    setSubmitted(true);
+    setSubmitting(true);
+    // Simulate submission (replace with actual API/email service integration)
     setTimeout(() => {
-      setSubmitted(false);
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        subject: '',
-        message: '',
-      });
-    }, 3000);
+      setSubmitting(false);
+      setSubmitted(true);
+    }, 1200);
   };
 
   return (
-    <div className="pt-20">
-      {/* Hero */}
-      <section className="py-16 lg:py-24 bg-gradient-to-br from-primary/10 via-white to-secondary/20">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto text-center animate-fade-in">
-            <h1 className="text-4xl lg:text-5xl font-bold text-charcoal mb-6">
-              Contact Us
+    <div className="pt-[72px]">
+      <SEO
+        title="Contact Us — Evolve Board Consulting"
+        description="Get in touch with Evolve Board Consulting. We're based in Dar es Salaam, Tanzania and serve organizations across East Africa."
+        keywords="contact evolve board consulting, governance advisory Tanzania, board consulting enquiry"
+      />
+
+      {/* ─── PAGE HERO ───────────────────────────────────────────────────── */}
+      <section className="relative bg-navy py-24 lg:py-32 overflow-hidden">
+        <div className="absolute inset-0 bg-dot-grid" />
+        <div className="absolute inset-0 bg-gradient-to-r from-primary/20 via-transparent to-transparent" />
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <RevealSection>
+            <div className="flex items-center gap-3 mb-6">
+              <span className="block w-8 h-px bg-secondary flex-shrink-0" />
+              <span className="eyebrow">Contact Us</span>
+            </div>
+            <h1 className="text-display-lg lg:text-display-xl font-bold text-white leading-tight mb-6 max-w-3xl">
+              Let's start a conversation.
             </h1>
-            <p className="text-xl text-neutral-grey leading-relaxed">
-              Get in touch with us to discuss how we can help enhance your governance practices
+            <p className="text-base lg:text-lg text-white/55 max-w-xl leading-relaxed">
+              Whether you're exploring governance options, planning a board training, or ready to
+              engage our services — we'd love to hear from you.
             </p>
-          </div>
+          </RevealSection>
         </div>
       </section>
 
-      {/* Contact Section */}
-      <section className="py-16 lg:py-24 bg-white">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-6xl mx-auto">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-              {/* Contact Form */}
-              <div className="animate-slide-in">
-                <h2 className="text-2xl font-bold text-charcoal mb-6">Send us a Message</h2>
+      {/* ─── CONTACT MAIN ────────────────────────────────────────────────── */}
+      <section className="bg-white py-24 lg:py-32">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-16 lg:gap-20">
+
+            {/* Contact Info Panel */}
+            <div className="lg:col-span-2">
+              <RevealSection>
+                <span className="eyebrow mb-4 block">Get in Touch</span>
+                <h2 className="text-display-sm font-bold text-ink mb-6 leading-tight">
+                  We're ready to help
+                </h2>
+                <p className="text-sm text-ink-muted leading-relaxed mb-10">
+                  Our team is based in Dar es Salaam and works with organizations across
+                  Tanzania, Kenya, Uganda, and beyond. Reach out to explore how we can support
+                  your governance journey.
+                </p>
+
+                <div className="space-y-8">
+                  {contactDetails.map((item, i) => (
+                    <div key={i} className="flex items-start gap-4">
+                      <div className="w-9 h-9 bg-primary/8 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
+                        <item.icon className="w-4 h-4 text-primary" />
+                      </div>
+                      <div>
+                        <div className="text-xs font-semibold uppercase tracking-wider text-ink-subtle mb-1.5">
+                          {item.label}
+                        </div>
+                        {item.links
+                          ? item.lines.map((line, j) => (
+                              <a
+                                key={j}
+                                href={item.links![j]}
+                                className="block text-sm text-ink-muted hover:text-primary transition-colors duration-200"
+                              >
+                                {line}
+                              </a>
+                            ))
+                          : item.lines.map((line, j) => (
+                              <div key={j} className="text-sm text-ink-muted">
+                                {line}
+                              </div>
+                            ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </RevealSection>
+            </div>
+
+            {/* Contact Form */}
+            <div className="lg:col-span-3">
+              <RevealSection delay={100}>
                 {submitted ? (
-                  <div className="bg-secondary/30 border-2 border-primary rounded-lg p-8 text-center animate-fade-in">
-                    <CheckCircle className="h-12 w-12 text-primary mx-auto mb-4" />
-                    <h3 className="text-xl font-semibold text-charcoal mb-2">
-                      Thank You!
-                    </h3>
-                    <p className="text-neutral-grey">
-                      We've received your message and will get back to you soon.
+                  <div className="flex flex-col items-center justify-center text-center py-20 px-8 bg-surface-soft rounded-xl border border-gray-100">
+                    <div className="w-16 h-16 bg-green-50 rounded-full flex items-center justify-center mb-6">
+                      <CheckCircle2 className="w-8 h-8 text-green-500" />
+                    </div>
+                    <h3 className="text-xl font-bold text-ink mb-3">Message received</h3>
+                    <p className="text-sm text-ink-muted max-w-sm leading-relaxed mb-6">
+                      Thank you for reaching out to Evolve Board Consulting. A member of our team will respond to your enquiry within one business day.
                     </p>
+                    <button
+                      onClick={() => { setSubmitted(false); setForm(initialForm); }}
+                      className="text-sm font-semibold text-primary hover:text-primary-dark transition-colors"
+                    >
+                      Send another message
+                    </button>
                   </div>
                 ) : (
                   <form onSubmit={handleSubmit} className="space-y-6">
-                    <div>
-                      <label htmlFor="name" className="block text-sm font-medium text-charcoal mb-2">
-                        Full Name *
-                      </label>
-                      <input
-                        type="text"
-                        id="name"
-                        name="name"
-                        value={formData.name}
-                        onChange={handleChange}
-                        required
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
-                      />
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                      {/* Full Name */}
+                      <div>
+                        <label htmlFor="name" className="block text-xs font-semibold uppercase tracking-wider text-ink-muted mb-2">
+                          Full Name <span className="text-secondary">*</span>
+                        </label>
+                        <input
+                          id="name"
+                          name="name"
+                          type="text"
+                          required
+                          value={form.name}
+                          onChange={handleChange}
+                          placeholder="John Doe"
+                          className="w-full px-4 py-3 bg-surface-soft border border-gray-200 rounded text-sm text-ink placeholder-ink-subtle focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/20 transition-colors"
+                        />
+                      </div>
+
+                      {/* Organization */}
+                      <div>
+                        <label htmlFor="organization" className="block text-xs font-semibold uppercase tracking-wider text-ink-muted mb-2">
+                          Organization
+                        </label>
+                        <input
+                          id="organization"
+                          name="organization"
+                          type="text"
+                          value={form.organization}
+                          onChange={handleChange}
+                          placeholder="Company or Institution"
+                          className="w-full px-4 py-3 bg-surface-soft border border-gray-200 rounded text-sm text-ink placeholder-ink-subtle focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/20 transition-colors"
+                        />
+                      </div>
+
+                      {/* Email */}
+                      <div>
+                        <label htmlFor="email" className="block text-xs font-semibold uppercase tracking-wider text-ink-muted mb-2">
+                          Email Address <span className="text-secondary">*</span>
+                        </label>
+                        <input
+                          id="email"
+                          name="email"
+                          type="email"
+                          required
+                          value={form.email}
+                          onChange={handleChange}
+                          placeholder="your@email.com"
+                          className="w-full px-4 py-3 bg-surface-soft border border-gray-200 rounded text-sm text-ink placeholder-ink-subtle focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/20 transition-colors"
+                        />
+                      </div>
+
+                      {/* Phone */}
+                      <div>
+                        <label htmlFor="phone" className="block text-xs font-semibold uppercase tracking-wider text-ink-muted mb-2">
+                          Phone Number
+                        </label>
+                        <input
+                          id="phone"
+                          name="phone"
+                          type="tel"
+                          value={form.phone}
+                          onChange={handleChange}
+                          placeholder="+255 700 000 000"
+                          className="w-full px-4 py-3 bg-surface-soft border border-gray-200 rounded text-sm text-ink placeholder-ink-subtle focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/20 transition-colors"
+                        />
+                      </div>
                     </div>
+
+                    {/* Subject */}
                     <div>
-                      <label htmlFor="email" className="block text-sm font-medium text-charcoal mb-2">
-                        Email Address *
-                      </label>
-                      <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        required
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
-                      />
-                    </div>
-                    <div>
-                      <label htmlFor="phone" className="block text-sm font-medium text-charcoal mb-2">
-                        Phone Number
-                      </label>
-                      <input
-                        type="tel"
-                        id="phone"
-                        name="phone"
-                        value={formData.phone}
-                        onChange={handleChange}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
-                      />
-                    </div>
-                    <div>
-                      <label htmlFor="subject" className="block text-sm font-medium text-charcoal mb-2">
-                        Subject *
+                      <label htmlFor="subject" className="block text-xs font-semibold uppercase tracking-wider text-ink-muted mb-2">
+                        Subject / Service Interest <span className="text-secondary">*</span>
                       </label>
                       <select
                         id="subject"
                         name="subject"
-                        value={formData.subject}
-                        onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                        value={form.subject}
+                        onChange={handleChange}
+                        className="w-full px-4 py-3 bg-surface-soft border border-gray-200 rounded text-sm text-ink focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/20 transition-colors appearance-none"
                       >
-                        <option value="">Select a subject</option>
-                        <option value="general">General Inquiry</option>
-                        <option value="services">Services Information</option>
-                        <option value="training">Training Programs</option>
-                        <option value="consulting">Consulting Services</option>
-                        <option value="other">Other</option>
+                        <option value="" disabled>Select a subject…</option>
+                        {subjectOptions.map((opt) => (
+                          <option key={opt} value={opt}>{opt}</option>
+                        ))}
                       </select>
                     </div>
+
+                    {/* Message */}
                     <div>
-                      <label htmlFor="message" className="block text-sm font-medium text-charcoal mb-2">
-                        Message *
+                      <label htmlFor="message" className="block text-xs font-semibold uppercase tracking-wider text-ink-muted mb-2">
+                        Message <span className="text-secondary">*</span>
                       </label>
                       <textarea
                         id="message"
                         name="message"
-                        value={formData.message}
-                        onChange={handleChange}
                         required
-                        rows={6}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent resize-none"
+                        rows={5}
+                        value={form.message}
+                        onChange={handleChange}
+                        placeholder="Tell us about your organization and how we can help…"
+                        className="w-full px-4 py-3 bg-surface-soft border border-gray-200 rounded text-sm text-ink placeholder-ink-subtle focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/20 transition-colors resize-none"
                       />
                     </div>
+
                     <button
                       type="submit"
-                      className="w-full px-6 py-3 bg-primary text-white rounded-lg font-semibold hover:bg-primary-dark transition-colors flex items-center justify-center"
+                      disabled={submitting}
+                      className="inline-flex items-center gap-2 px-7 py-3.5 bg-primary text-white text-sm font-semibold rounded hover:bg-primary-dark disabled:opacity-70 disabled:cursor-not-allowed transition-colors duration-200"
                     >
-                      Send Message
-                      <Send className="ml-2 h-5 w-5" />
+                      {submitting ? (
+                        <>
+                          <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                          Sending…
+                        </>
+                      ) : (
+                        <>
+                          Send Message
+                          <Send className="w-4 h-4" />
+                        </>
+                      )}
                     </button>
                   </form>
                 )}
-              </div>
-
-              {/* Contact Info */}
-              <div className="animate-slide-in" style={{ animationDelay: '0.2s' }}>
-                <h2 className="text-2xl font-bold text-charcoal mb-6">Get in Touch</h2>
-                <div className="space-y-6 mb-8">
-                  <div className="flex items-start space-x-4">
-                    <div className="w-12 h-12 bg-secondary/30 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <MapPin className="h-6 w-6 text-primary" />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-charcoal mb-1">Office Address</h3>
-                      <p className="text-neutral-grey text-sm leading-relaxed">
-                        1st Floor, C&G Plaza,<br />
-                        Mwai Kibaki Road, Mikocheni,<br />
-                        Dar es Salaam, Tanzania
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex items-start space-x-4">
-                    <div className="w-12 h-12 bg-secondary/30 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <Phone className="h-6 w-6 text-primary" />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-charcoal mb-1">Phone</h3>
-                      <a
-                        href="tel:+255123456789"
-                        className="text-neutral-grey hover:text-primary transition-colors text-sm"
-                      >
-                        +255 123 456 789
-                      </a>
-                    </div>
-                  </div>
-                  <div className="flex items-start space-x-4">
-                    <div className="w-12 h-12 bg-secondary/30 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <Mail className="h-6 w-6 text-primary" />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-charcoal mb-1">Email</h3>
-                      <a
-                        href="mailto:info@evolveboardconsulting.com"
-                        className="text-neutral-grey hover:text-primary transition-colors text-sm"
-                      >
-                        info@evolveboardconsulting.com
-                      </a>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Map */}
-                <div className="mt-8">
-                  <h3 className="font-semibold text-charcoal mb-4">Find Us</h3>
-                  <div className="aspect-video bg-gray-100 rounded-lg overflow-hidden border border-gray-200">
-                    <iframe
-                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3961.234567890123!2d39.23456789012345!3d-6.789012345678901!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNsKwNDcnMjAuNCJTIDM5wrAxNCcwNC40IkU!5e0!3m2!1sen!2stz!4v1234567890123!5m2!1sen!2stz"
-                      width="100%"
-                      height="100%"
-                      style={{ border: 0 }}
-                      allowFullScreen
-                      loading="lazy"
-                      referrerPolicy="no-referrer-when-downgrade"
-                      title="Evolve Board Consulting Location"
-                      className="w-full h-full"
-                    ></iframe>
-                  </div>
-                  <p className="text-xs text-neutral-grey mt-2 text-center">
-                    C&G Plaza, Mwai Kibaki Road, Mikocheni, Dar es Salaam
-                  </p>
-                </div>
-              </div>
+              </RevealSection>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── MAP ─────────────────────────────────────────────────────────── */}
+      <section className="h-80 bg-surface-muted border-t border-gray-100 relative overflow-hidden">
+        <div className="absolute inset-0 flex items-center justify-center bg-surface-muted">
+          <div className="text-center">
+            <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-3">
+              <MapPin className="w-6 h-6 text-primary" />
+            </div>
+            <p className="text-sm font-medium text-ink mb-1">C&G Plaza, Mikocheni</p>
+            <p className="text-xs text-ink-muted">Dar es Salaam, Tanzania</p>
+            <a
+              href="https://maps.google.com/?q=Mikocheni+Dar+es+Salaam+Tanzania"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block mt-3 text-xs font-semibold text-primary hover:text-primary-dark transition-colors"
+            >
+              Open in Google Maps →
+            </a>
           </div>
         </div>
       </section>
     </div>
   );
 }
-

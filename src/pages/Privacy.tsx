@@ -3,7 +3,7 @@ import { Shield, Lock, Eye, FileText } from 'lucide-react';
 
 export default function Privacy() {
   return (
-    <div className="pt-20">
+    <div className="pt-[72px]">
       <SEO
         title="Privacy Policy"
         description="Privacy Policy for Evolve Board Consulting. Learn how we collect, use, and protect your personal information."

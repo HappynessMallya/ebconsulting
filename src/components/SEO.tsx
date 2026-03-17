@@ -21,9 +21,9 @@ export default function SEO({
       'Leading governance advisory firm specializing in board development, training, and strategic oversight.';
     const baseUrl = 'https://ebconsulting.co.tz';
 
-    // Update title
+    // Update title — if it already contains the base title, use as-is
     if (title) {
-      document.title = `${title} | ${baseTitle}`;
+      document.title = title.includes(baseTitle) ? title : `${title} | ${baseTitle}`;
     }
 
     // Update meta description

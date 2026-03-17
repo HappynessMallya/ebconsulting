@@ -3,7 +3,7 @@ import { Scale, FileCheck, AlertCircle, CheckCircle } from 'lucide-react';
 
 export default function Terms() {
   return (
-    <div className="pt-20">
+    <div className="pt-[72px]">
       <SEO
         title="Terms of Service"
         description="Terms of Service for Evolve Board Consulting. Read our terms and conditions for using our website and services."

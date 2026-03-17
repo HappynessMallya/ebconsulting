@@ -1,268 +1,287 @@
-import { useState } from 'react';
-import { ChevronDown, ChevronUp, Award, Briefcase, BookOpen, Users } from 'lucide-react';
-import ImageUploadPlaceholder from '../components/ImageUploadPlaceholder';
+import { Link } from 'react-router-dom';
+import { ArrowRight, Award, Briefcase, GraduationCap, Globe, CheckCircle2 } from 'lucide-react';
+import SEO from '../components/SEO';
+import RevealSection from '../components/RevealSection';
 
-interface AccordionSectionProps {
-  title: string;
-  icon: React.ElementType;
-  children: React.ReactNode;
-  defaultOpen?: boolean;
-}
+const credentials = [
+  { label: 'FCPA', detail: 'Fellow Certified Public Accountant' },
+  { label: 'BCom', detail: 'Bachelor of Commerce — Accounting' },
+  { label: 'PhD', detail: 'Doctor of Philosophy — Intercultural Studies' },
+];
 
-function AccordionSection({ title, icon: Icon, children, defaultOpen = false }: AccordionSectionProps) {
-  const [isOpen, setIsOpen] = useState(defaultOpen);
+const memberships = [
+  {
+    icon: Award,
+    title: 'Chartered Governance Institute',
+    detail: 'UK & Ireland — Member',
+  },
+  {
+    icon: Briefcase,
+    title: 'Institute of Directors Tanzania',
+    detail: 'IoDT — Member',
+  },
+  {
+    icon: Globe,
+    title: 'PwC Africa Governance Board',
+    detail: 'Former Board Member',
+  },
+];
 
-  return (
-    <div className="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100">
-      <button
-        onClick={() => setIsOpen(!isOpen)}
-        className="w-full px-6 py-4 flex items-center justify-between hover:bg-gray-50 transition-colors"
-        aria-expanded={isOpen}
-      >
-        <div className="flex items-center space-x-3">
-          <div className="w-10 h-10 bg-secondary/30 rounded-lg flex items-center justify-center">
-            <Icon className="h-5 w-5 text-primary" />
-          </div>
-          <h3 className="text-lg font-semibold text-charcoal">{title}</h3>
-        </div>
-        {isOpen ? (
-          <ChevronUp className="h-5 w-5 text-neutral-grey" />
-        ) : (
-          <ChevronDown className="h-5 w-5 text-neutral-grey" />
-        )}
-      </button>
-      {isOpen && (
-        <div className="px-6 py-4 border-t border-gray-100 animate-fade-in">
-          {children}
-        </div>
-      )}
-    </div>
-  );
-}
+const experienceAreas = [
+  'Corporate Governance & Board Leadership',
+  'Accounting & External Auditing',
+  'Risk Management Frameworks',
+  'HR Management & Organizational Development',
+  'Strategic Planning & Business Leadership',
+  'Financial Management & Advisory',
+  'Compliance & Regulatory Affairs',
+  'Intercultural Organizational Studies',
+];
+
+const careerHighlights = [
+  {
+    role: 'Principal Consultant & Founder',
+    org: 'Evolve Board Consulting',
+    detail: 'Leading governance and strategy advisory firm serving East Africa.',
+    current: true,
+  },
+  {
+    role: 'Chairman',
+    org: 'Old Mutual General Insurance Kenya',
+    detail: 'Non-executive board chairmanship at one of Kenya\'s leading insurers.',
+    current: true,
+  },
+  {
+    role: 'Former Partner — Assurance & Advisory',
+    org: 'PricewaterhouseCoopers (PwC) Tanzania',
+    detail: 'Led Assurance & Advisory practice for PwC in Tanzania.',
+    current: false,
+  },
+  {
+    role: 'Governance Board Member',
+    org: 'PwC Africa',
+    detail: 'Served on PwC Africa\'s governance board, contributing to regional leadership.',
+    current: false,
+  },
+];
 
 export default function Consultants() {
   return (
-    <div className="pt-20">
-      {/* Hero */}
-      <section className="py-16 lg:py-24 bg-gradient-to-br from-primary/10 via-white to-secondary/20">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto text-center animate-fade-in">
-            <h1 className="text-4xl lg:text-5xl font-bold text-charcoal mb-6">
-              Our Consultants
+    <div className="pt-[72px]">
+      <SEO
+        title="Leadership — Dr. Mike Sallu | Evolve Board Consulting"
+        description="Meet Dr. Mike Sallu — Principal Consultant at Evolve Board Consulting. Over 35 years of governance, strategy, and board leadership experience across East Africa."
+        keywords="Dr Mike Sallu, governance consultant Tanzania, board leadership expert, PwC Tanzania, Old Mutual Kenya"
+      />
+
+      {/* ─── PAGE HERO ───────────────────────────────────────────────────── */}
+      <section className="relative bg-navy py-24 lg:py-32 overflow-hidden">
+        <div className="absolute inset-0 bg-dot-grid" />
+        <div className="absolute inset-0 bg-gradient-to-r from-primary/20 via-transparent to-transparent" />
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <RevealSection>
+            <div className="flex items-center gap-3 mb-6">
+              <span className="block w-8 h-px bg-secondary flex-shrink-0" />
+              <span className="eyebrow">Our Leadership</span>
+            </div>
+            <h1 className="text-display-lg lg:text-display-xl font-bold text-white leading-tight mb-6 max-w-3xl">
+              Leadership rooted in decades of governance expertise.
             </h1>
-            <p className="text-xl text-neutral-grey leading-relaxed">
-              Meet our team of experienced governance professionals
+            <p className="text-base lg:text-lg text-white/55 max-w-2xl leading-relaxed">
+              Evolve Board Consulting is led by one of East Africa's most respected governance
+              and board advisory professionals — Dr. Mike Sallu.
             </p>
-          </div>
+          </RevealSection>
         </div>
       </section>
 
-      {/* Dr. Sallu Profile */}
-      <section className="py-16 lg:py-24 bg-white">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-6xl mx-auto">
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
-              {/* Photo */}
-              <div className="lg:col-span-1">
-                <div className="aspect-[3/4] bg-gray-100 rounded-xl overflow-hidden shadow-lg">
-                  <img
-                    src="/images/Mike-2.webp"
-                    alt="Dr. Mike Sallu - Principal Consultant"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-              </div>
+      {/* ─── DR. SALLU PROFILE ───────────────────────────────────────────── */}
+      <section className="bg-white py-24 lg:py-32">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-16 lg:gap-20 items-start">
 
-              {/* Bio & Details */}
-              <div className="lg:col-span-2">
-                <div className="animate-fade-in">
-                  <h2 className="text-3xl lg:text-4xl font-bold text-charcoal mb-2">
-                    Dr. Mike Sallu
-                  </h2>
-                  <p className="text-xl text-primary font-semibold mb-6">Principal Consultant</p>
-                  <div className="prose prose-lg max-w-none mb-8">
-                    <p className="text-neutral-grey leading-relaxed mb-4">
-                      Dr. Mike Sallu is a distinguished governance expert with extensive experience
-                      in corporate governance, board development, and strategic oversight. With a
-                      deep understanding of governance best practices and regulatory requirements,
-                      Dr. Sallu has helped numerous organizations across East Africa enhance their
-                      governance frameworks and achieve excellence in board effectiveness.
-                    </p>
-                    <p className="text-neutral-grey leading-relaxed mb-4">
-                      His expertise spans board development planning, performance evaluations,
-                      director recruitment, and strategic planning. Dr. Sallu is known for his
-                      practical approach to governance challenges and his ability to translate
-                      complex governance concepts into actionable strategies.
-                    </p>
-                    <p className="text-neutral-grey leading-relaxed">
-                      As Principal Consultant at Evolve Board Consulting, Dr. Sallu leads our team
-                      in delivering world-class governance advisory services that drive sustainable
-                      organizational success.
-                    </p>
+            {/* Left — Photo & Credentials */}
+            <div className="lg:col-span-2">
+              <RevealSection>
+                <div className="sticky top-24">
+                  {/* Photo */}
+                  <div className="aspect-[3/4] rounded-xl overflow-hidden bg-surface-muted mb-6">
+                    <img
+                      src="/images/Mike-2.webp"
+                      alt="Dr. Mike Sallu — Principal Consultant, Evolve Board Consulting"
+                      className="w-full h-full object-cover object-top"
+                    />
                   </div>
+
+                  {/* Credentials */}
+                  <div className="bg-surface-soft border border-gray-100 rounded-xl p-6 mb-4">
+                    <div className="flex items-center gap-2.5 mb-4">
+                      <GraduationCap className="w-4 h-4 text-secondary" />
+                      <h3 className="text-xs font-semibold uppercase tracking-wider text-ink-muted">Academic Credentials</h3>
+                    </div>
+                    <div className="space-y-3">
+                      {credentials.map((cred) => (
+                        <div key={cred.label} className="flex items-start gap-3">
+                          <span className="text-xs font-bold text-primary bg-primary-50 px-2 py-0.5 rounded mt-0.5 flex-shrink-0">{cred.label}</span>
+                          <span className="text-xs text-ink-muted leading-snug">{cred.detail}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Contact CTA */}
+                  <Link
+                    to="/contact"
+                    className="flex items-center justify-center gap-2 w-full px-5 py-3 bg-primary text-white text-sm font-semibold rounded hover:bg-primary-dark transition-colors"
+                  >
+                    Engage Dr. Sallu
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
                 </div>
-              </div>
+              </RevealSection>
             </div>
 
-            {/* Accordion Sections */}
-            <div className="mt-12 space-y-4">
-              <AccordionSection
-                title="Experience"
-                icon={Briefcase}
-                defaultOpen={true}
-              >
-                <div className="space-y-4 text-neutral-grey">
-                  <div>
-                    <h4 className="font-semibold text-charcoal mb-2">Principal Consultant</h4>
-                    <p className="text-sm">Evolve Board Consulting | Current</p>
-                    <p className="text-sm mt-1">
-                      Leading governance advisory services and board development programs across
-                      East Africa.
-                    </p>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-charcoal mb-2">Governance Advisor</h4>
-                    <p className="text-sm">Various Organizations | 10+ Years</p>
-                    <p className="text-sm mt-1">
-                      Provided strategic governance guidance to boards of leading financial
-                      institutions, corporations, and non-profit organizations.
-                    </p>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-charcoal mb-2">Board Member</h4>
-                    <p className="text-sm">Multiple Organizations</p>
-                    <p className="text-sm mt-1">
-                      Served on boards of various organizations, bringing practical governance
-                      experience and strategic insight.
-                    </p>
-                  </div>
-                </div>
-              </AccordionSection>
+            {/* Right — Bio & Details */}
+            <div className="lg:col-span-3 space-y-12">
+              {/* Name & Title */}
+              <RevealSection delay={80}>
+                <h2 className="text-display-md lg:text-display-lg font-bold text-ink mb-2 leading-tight">
+                  Dr. Mike Sallu
+                </h2>
+                <p className="text-base text-secondary font-semibold mb-5">Principal Consultant &amp; Founder</p>
+                <span className="section-rule block mb-7" />
+                <p className="text-base text-ink-muted leading-relaxed mb-4">
+                  Dr. Mike Sallu is a seasoned consultant and business leader with over{' '}
+                  <strong className="text-ink font-semibold">35 years of experience</strong> across
+                  corporate governance, strategy, HR management, accounting, auditing, risk
+                  management, and finance in East Africa and internationally.
+                </p>
+                <p className="text-base text-ink-muted leading-relaxed mb-4">
+                  A former Partner at PwC and Leader of Assurance &amp; Advisory at PwC Tanzania,
+                  Dr. Sallu brings the rigour of a Big Four professional background combined with
+                  deep board-level experience. He currently serves as{' '}
+                  <strong className="text-ink font-semibold">Chairman of Old Mutual General Insurance Kenya</strong>,
+                  one of Kenya's leading insurance groups.
+                </p>
+                <p className="text-base text-ink-muted leading-relaxed">
+                  Dr. Sallu is a Member of the Chartered Governance Institute (UK &amp; Ireland) and
+                  the Institute of Directors Tanzania — demonstrating a career-long commitment to
+                  professional governance excellence. His PhD in Intercultural Studies enriches his
+                  approach to organizational transformation and cross-cultural board dynamics.
+                </p>
+              </RevealSection>
 
-              <AccordionSection title="Sectors Served" icon={Users}>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="bg-gray-50 rounded-lg p-4">
-                    <h4 className="font-semibold text-charcoal mb-2">Financial Services</h4>
-                    <p className="text-sm text-neutral-grey">
-                      Banks, insurance companies, and financial institutions
-                    </p>
-                  </div>
-                  <div className="bg-gray-50 rounded-lg p-4">
-                    <h4 className="font-semibold text-charcoal mb-2">Manufacturing</h4>
-                    <p className="text-sm text-neutral-grey">
-                      Industrial and manufacturing organizations
-                    </p>
-                  </div>
-                  <div className="bg-gray-50 rounded-lg p-4">
-                    <h4 className="font-semibold text-charcoal mb-2">Healthcare</h4>
-                    <p className="text-sm text-neutral-grey">
-                      Hospitals, healthcare providers, and medical institutions
-                    </p>
-                  </div>
-                  <div className="bg-gray-50 rounded-lg p-4">
-                    <h4 className="font-semibold text-charcoal mb-2">Non-Profit</h4>
-                    <p className="text-sm text-neutral-grey">
-                      NGOs, foundations, and charitable organizations
-                    </p>
-                  </div>
-                  <div className="bg-gray-50 rounded-lg p-4">
-                    <h4 className="font-semibold text-charcoal mb-2">Technology</h4>
-                    <p className="text-sm text-neutral-grey">
-                      Tech companies and digital transformation organizations
-                    </p>
-                  </div>
-                  <div className="bg-gray-50 rounded-lg p-4">
-                    <h4 className="font-semibold text-charcoal mb-2">Energy & Utilities</h4>
-                    <p className="text-sm text-neutral-grey">
-                      Energy companies and utility providers
-                    </p>
-                  </div>
+              {/* Career Highlights */}
+              <RevealSection delay={120}>
+                <h3 className="text-sm font-semibold uppercase tracking-wider text-ink mb-6">Career Highlights</h3>
+                <div className="space-y-4">
+                  {careerHighlights.map((item, i) => (
+                    <div
+                      key={i}
+                      className="flex gap-4 p-5 rounded-xl border border-gray-100 hover:border-primary/20 hover:bg-primary-50/30 transition-all duration-200"
+                    >
+                      <div className={`w-2 h-2 rounded-full mt-2 flex-shrink-0 ${item.current ? 'bg-secondary' : 'bg-gray-300'}`} />
+                      <div>
+                        <div className="flex items-center flex-wrap gap-2 mb-1">
+                          <span className="text-sm font-semibold text-ink">{item.role}</span>
+                          {item.current && (
+                            <span className="text-[10px] font-bold uppercase tracking-wider bg-secondary/10 text-secondary px-2 py-0.5 rounded-full">Current</span>
+                          )}
+                        </div>
+                        <div className="text-xs font-semibold text-primary mb-1.5">{item.org}</div>
+                        <div className="text-sm text-ink-muted">{item.detail}</div>
+                      </div>
+                    </div>
+                  ))}
                 </div>
-              </AccordionSection>
+              </RevealSection>
 
-              <AccordionSection title="Publications / Articles" icon={BookOpen}>
-                <div className="space-y-4 text-neutral-grey">
-                  <div className="border-l-4 border-primary pl-4">
-                    <h4 className="font-semibold text-charcoal mb-1">
-                      "Effective Board Governance in East Africa"
-                    </h4>
-                    <p className="text-sm">Governance Journal | 2023</p>
-                  </div>
-                  <div className="border-l-4 border-primary pl-4">
-                    <h4 className="font-semibold text-charcoal mb-1">
-                      "Strategic Planning for Board Success"
-                    </h4>
-                    <p className="text-sm">Corporate Governance Review | 2022</p>
-                  </div>
-                  <div className="border-l-4 border-primary pl-4">
-                    <h4 className="font-semibold text-charcoal mb-1">
-                      "Risk Management and Board Oversight"
-                    </h4>
-                    <p className="text-sm">Governance Quarterly | 2021</p>
-                  </div>
+              {/* Experience Areas */}
+              <RevealSection delay={160}>
+                <h3 className="text-sm font-semibold uppercase tracking-wider text-ink mb-6">Areas of Expertise</h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  {experienceAreas.map((area, i) => (
+                    <div key={i} className="flex items-center gap-3">
+                      <CheckCircle2 className="w-4 h-4 text-secondary flex-shrink-0" />
+                      <span className="text-sm text-ink-muted">{area}</span>
+                    </div>
+                  ))}
                 </div>
-              </AccordionSection>
+              </RevealSection>
 
-              <AccordionSection title="Current Governance Engagements" icon={Award}>
-                <div className="space-y-4 text-neutral-grey">
-                  <div>
-                    <h4 className="font-semibold text-charcoal mb-2">
-                      Board Development Program
-                    </h4>
-                    <p className="text-sm">
-                      Leading comprehensive board development initiative for a leading financial
-                      institution, focusing on strategic oversight and risk management.
-                    </p>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-charcoal mb-2">
-                      Governance Audit & Review
-                    </h4>
-                    <p className="text-sm">
-                      Conducting governance audit for a major manufacturing corporation to assess
-                      compliance and identify improvement opportunities.
-                    </p>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-charcoal mb-2">
-                      Director Training Program
-                    </h4>
-                    <p className="text-sm">
-                      Delivering specialized training programs for board members across multiple
-                      organizations in the region.
-                    </p>
-                  </div>
+              {/* Memberships */}
+              <RevealSection delay={200}>
+                <h3 className="text-sm font-semibold uppercase tracking-wider text-ink mb-6">Professional Memberships</h3>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                  {memberships.map((mem, i) => (
+                    <div
+                      key={i}
+                      className="bg-surface-soft border border-gray-100 rounded-xl p-5 text-center hover:border-primary/25 hover:shadow-md transition-all duration-200"
+                    >
+                      <div className="w-10 h-10 bg-primary/8 rounded-full flex items-center justify-center mx-auto mb-3">
+                        <mem.icon className="w-5 h-5 text-primary" />
+                      </div>
+                      <div className="text-xs font-semibold text-ink mb-1 leading-snug">{mem.title}</div>
+                      <div className="text-[11px] text-ink-subtle">{mem.detail}</div>
+                    </div>
+                  ))}
                 </div>
-              </AccordionSection>
+              </RevealSection>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Additional Consultants Placeholder */}
-      <section className="py-16 lg:py-24 bg-gray-50">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto text-center animate-fade-in">
-            <h2 className="text-3xl lg:text-4xl font-bold text-charcoal mb-6">
-              Our Team
+      {/* ─── GOVERNANCE PHILOSOPHY ───────────────────────────────────────── */}
+      <section className="bg-surface-soft py-24 lg:py-28 border-y border-gray-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <RevealSection>
+            <div className="max-w-3xl mx-auto text-center">
+              <span className="eyebrow mb-4 block">Governance Philosophy</span>
+              <blockquote className="text-xl lg:text-2xl font-medium text-ink leading-[1.55] mb-7 text-balance border-l-0">
+                "Effective governance is not about compliance alone — it is about building the
+                culture, capability, and character of an institution's leadership. Boards that
+                understand their role and embrace their responsibility are the foundation of
+                every great organization."
+              </blockquote>
+              <div className="flex flex-col items-center gap-1">
+                <span className="text-sm font-semibold text-ink">Dr. Mike Sallu</span>
+                <span className="text-xs text-ink-subtle">Principal Consultant, Evolve Board Consulting</span>
+              </div>
+            </div>
+          </RevealSection>
+        </div>
+      </section>
+
+      {/* ─── CTA ─────────────────────────────────────────────────────────── */}
+      <section className="bg-white py-20 lg:py-24">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <RevealSection>
+            <h2 className="text-display-md font-bold text-ink mb-5 leading-tight">
+              Work with Dr. Sallu and the Evolve team
             </h2>
-            <p className="text-lg text-neutral-grey mb-8">
-              We are expanding our team of governance experts. Additional consultant profiles will
-              be added soon.
+            <p className="text-base text-ink-muted mb-8 max-w-xl mx-auto leading-relaxed">
+              Whether you need a one-off governance audit, ongoing board advisory, or a full
+              board development programme, we're ready to help.
             </p>
-            <div className="bg-white rounded-xl p-8 shadow-md">
-              <p className="text-neutral-grey">
-                Interested in joining our team? Visit our{' '}
-                <a href="/careers" className="text-primary hover:text-primary-dark font-semibold">
-                  Careers page
-                </a>{' '}
-                to learn more.
-              </p>
+            <div className="flex flex-col sm:flex-row justify-center gap-4">
+              <Link
+                to="/contact"
+                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-primary text-white text-sm font-semibold rounded hover:bg-primary-dark transition-colors"
+              >
+                Get in Touch
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+              <Link
+                to="/services"
+                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 border border-gray-200 text-ink text-sm font-semibold rounded hover:border-primary hover:text-primary transition-colors"
+              >
+                View Our Services
+              </Link>
             </div>
-          </div>
+          </RevealSection>
         </div>
       </section>
     </div>
   );
 }
-
