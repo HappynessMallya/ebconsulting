@@ -87,8 +87,7 @@ export default function About() {
               A governance firm built on purpose, expertise, and trust.
             </h1>
             <p className="text-base lg:text-lg text-white/55 max-w-2xl leading-relaxed">
-              Evolve is a professional consulting firm that offers specialized governance and
-              strategy advisory services to listed and private companies, public sector entities,
+              Evolve is a professional consulting firm that offers specialized governance advisory services to listed and private companies, public sector entities,
               and donor-funded organizations. The firm comprises highly qualified, skilled, and
               experienced professionals, who are uniquely placed to provide relevant solutions
               to different organisations.
