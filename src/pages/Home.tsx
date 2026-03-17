@@ -203,7 +203,7 @@ export default function Home() {
               <p className="text-base text-ink-muted leading-relaxed mb-5">
                 Evolve Board Consulting is a professional advisory firm comprising highly qualified
                 specialists in corporate governance, strategy, and board leadership. We serve listed
-                companies, private enterprises, government entities, and donor-funded organizations
+                companies, Private Companies, government entities, and donor-funded organizations
                 across East Africa.
               </p>
               <p className="text-base text-ink-muted leading-relaxed mb-8">
@@ -214,13 +214,7 @@ export default function Home() {
                 <strong className="text-ink font-semibold">Trust</strong> — ensuring every
                 engagement delivers lasting, measurable impact.
               </p>
-              <Link
-                to="/about"
-                className="inline-flex items-center gap-2 text-primary text-sm font-semibold hover:text-primary-dark transition-colors group"
-              >
-                Learn about our firm
-                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-              </Link>
+        
             </RevealSection>
 
             {/* Right — Visual stat blocks (no duplication with a separate bar) */}
@@ -234,17 +228,43 @@ export default function Home() {
                   <div className="text-4xl font-bold text-ink mb-1">50+</div>
                   <div className="text-ink-muted text-sm font-medium leading-snug">Organizations served across East Africa</div>
                 </div>
-                <div className="bg-white rounded-xl p-8 border border-gray-100 flex flex-col justify-end min-h-[150px] shadow-sm">
-                  <div className="text-4xl font-bold text-ink mb-1">100+</div>
-                  <div className="text-ink-muted text-sm font-medium leading-snug">Board training programmes delivered</div>
-                </div>
-                <div className="bg-secondary rounded-xl p-8 flex flex-col justify-end min-h-[150px]">
-                  <div className="text-4xl font-bold text-white mb-1">500+</div>
-                  <div className="text-white/80 text-sm font-medium leading-snug">Board members trained across sectors</div>
+                <div className="bg-secondary rounded-xl p-8 col-span-2 flex flex-col justify-end min-h-[130px]">
+                  <div className="text-4xl font-bold text-white mb-1">200+</div>
+                  <div className="text-white/80 text-sm font-medium leading-snug">Board members and executives trained across sectors</div>
                 </div>
               </div>
             </RevealSection>
           </div>
+
+          {/* Dr. Sallu quote — inside Who We Are */}
+          <RevealSection delay={100} className="mt-16 pt-12 border-t border-gray-200">
+            <div className="border-l-2 border-secondary pl-8 lg:pl-10">
+              {/* Quote with inline opening and closing marks */}
+              <blockquote className="text-base lg:text-lg font-medium text-ink leading-[1.75] mb-6">
+                <span className="text-secondary font-serif text-xl leading-none align-top mr-0.5 select-none">&ldquo;</span>
+                Boards face unprecedented challenges in the modern complex business environment.
+                From the demand for transparency and ethical practices, and the necessity for
+                embracing rapid technological advancements, to maintaining a balance between
+                short-term goals and long-term sustainability, the role of the board is not
+                getting easier. Now more than ever before, boards need more equipping.
+                <span className="text-secondary font-serif text-xl leading-none align-bottom ml-0.5 select-none">&rdquo;</span>
+              </blockquote>
+
+              {/* Attribution */}
+              <div>
+                <div className="text-sm font-bold text-ink leading-tight">Dr. Mike Sallu</div>
+                <div className="text-xs text-secondary font-semibold mt-0.5">Lead Consultant, Evolve Board Consulting</div>
+              </div>
+            </div>
+
+            <Link
+              to="/about"
+              className="inline-flex items-center gap-2 text-primary text-sm font-semibold hover:text-primary-dark transition-colors group mt-8"
+            >
+              Learn about our firm
+              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+            </Link>
+          </RevealSection>
         </div>
       </section>
 
@@ -320,7 +340,7 @@ export default function Home() {
                 <div className="aspect-[4/5] rounded-xl overflow-hidden bg-surface-muted max-w-[440px]">
                   <img
                     src="/images/Mike-2.png"
-                    alt="Dr. Mike Sallu — Principal Consultant, Evolve Board Consulting"
+                    alt="Dr. Mike Sallu — Lead Consultant, Evolve Board Consulting"
                     loading="lazy"
                     className="w-full h-full object-cover object-top"
                   />
@@ -346,7 +366,7 @@ export default function Home() {
               <h2 className="text-display-md lg:text-display-lg font-bold text-ink mb-2 leading-tight">
                 Dr. Mike Sallu
               </h2>
-              <p className="text-base text-secondary font-semibold mb-6">Principal Consultant &amp; Founder</p>
+              <p className="text-base text-secondary font-semibold mb-6">Lead Consultant &amp; Founder</p>
               <span className="section-rule mb-7 block" />
               <p className="text-base text-ink-muted leading-relaxed mb-5">
                 Dr. Mike Sallu is a seasoned business leader and governance expert with over{' '}
@@ -413,26 +433,6 @@ export default function Home() {
               ))}
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* ─── TESTIMONIAL ─────────────────────────────────────────────────── */}
-      <section className="bg-white py-24 lg:py-28">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <RevealSection>
-            <div className="w-12 h-12 bg-primary/8 rounded-full flex items-center justify-center mx-auto mb-8">
-              <span className="text-primary text-2xl font-serif leading-none">"</span>
-            </div>
-            <blockquote className="text-xl lg:text-2xl font-medium text-ink leading-[1.55] mb-8 text-balance">
-              Evolve Board Consulting transformed how our board approaches governance. Their deep expertise,
-              structured methodology, and commitment to excellence delivered measurable improvements in
-              our board's effectiveness and accountability.
-            </blockquote>
-            <div className="inline-flex flex-col items-center gap-1">
-              <span className="text-sm font-semibold text-ink">Board Chairperson</span>
-              <span className="text-xs text-ink-subtle">Leading Financial Institution, East Africa</span>
-            </div>
-          </RevealSection>
         </div>
       </section>
 

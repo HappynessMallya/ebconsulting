@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, Target, Eye, Compass, CheckCircle2 } from 'lucide-react';
+import { ArrowRight, Target, Eye, Compass } from 'lucide-react';
 import SEO from '../components/SEO';
 import RevealSection from '../components/RevealSection';
 
@@ -51,18 +51,9 @@ const values = [
 const stats = [
   { value: '35+', label: 'Years of experience in governance, strategy, and board leadership' },
   { value: '50+', label: 'Organizations served across East Africa and beyond' },
-  { value: '100+', label: 'Board training programmes successfully delivered' },
-  { value: '500+', label: 'Board members and executives trained' },
+  { value: '200+', label: 'Board members and executives trained' },
 ];
 
-const governanceApproach = [
-  'Compliance with regulatory and legal frameworks',
-  'Value-driven, purpose-led board leadership',
-  'Cultural transformation for lasting institutional change',
-  'Accountability structures that inspire stakeholder trust',
-  'Transparency at every governance level',
-  'Strategic decision-making with ethical grounding',
-];
 
 export default function About() {
   return (
@@ -113,7 +104,7 @@ export default function About() {
               <p className="text-base text-ink-muted leading-relaxed mb-5">
                 Our firm comprises highly qualified professionals who have led governance
                 transformations at major institutions across Africa. We work with listed companies,
-                private enterprises, public sector entities, and donor-funded organizations to
+                Private Companies, public sector entities, and donor-funded organizations to
                 build the governance infrastructure that enables sustainable, ethical success.
               </p>
               <p className="text-base text-ink-muted leading-relaxed">
@@ -122,19 +113,13 @@ export default function About() {
             </RevealSection>
 
             <RevealSection delay={150}>
-              <div className="bg-surface-soft rounded-xl p-8 lg:p-10 border border-gray-100">
-                <h3 className="text-sm font-semibold uppercase tracking-wider text-ink mb-6">
-                  Our Governance Approach
-                </h3>
-                <ul className="space-y-3 mb-8">
-                  {governanceApproach.map((item, i) => (
-                    <li key={i} className="flex items-start gap-3">
-                      <CheckCircle2 className="w-4 h-4 text-secondary mt-0.5 flex-shrink-0" />
-                      <span className="text-sm text-ink-muted">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-                <span className="section-rule block" />
+              <div className="rounded-xl overflow-hidden aspect-[4/3] w-full">
+                <img
+                  src="/images/Training 3.jpg"
+                  alt="Evolve Board Consulting — governance training in action"
+                  loading="lazy"
+                  className="w-full h-full object-cover"
+                />
               </div>
             </RevealSection>
           </div>
@@ -187,7 +172,7 @@ export default function About() {
               Measurable results, lasting impact
             </h2>
           </RevealSection>
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 lg:gap-12">
             {stats.map((stat, i) => (
               <RevealSection key={i} delay={i * 80}>
                 <div className="border-t border-white/15 pt-6">
@@ -244,8 +229,8 @@ export default function About() {
               </h2>
               <p className="text-base text-ink-muted leading-relaxed mb-8">
                 Our clients span the full spectrum of organizational types — from publicly listed
-                companies and financial institutions, to government ministries, public parastatals,
-                NGOs, and donor-funded development programs.
+                companies and financial institutions, parastatals,
+                NGOs, and donor-funded organisations.
               </p>
               <Link
                 to="/contact"
@@ -259,11 +244,11 @@ export default function About() {
             <RevealSection delay={120}>
               <div className="grid grid-cols-2 gap-3">
                 {[
-                  'Listed Companies', 'Private Enterprises',
-                  'Financial Institutions', 'Insurance Firms',
-                  'Government Ministries', 'Public Parastatals',
-                  'NGOs & Foundations', 'Donor-Funded Programs',
-                  'Healthcare Organizations', 'Educational Institutions',
+                  'Listed Companies', 'Private Companies',
+                  'Financial Institutions',
+                  'Parastatals',
+                  'Donor-Funded Organisations', 'Healthcare Organisations',
+                  'Educational Institutions', "Manufacturing and Other Sectors",
                 ].map((sector) => (
                   <div
                     key={sector}

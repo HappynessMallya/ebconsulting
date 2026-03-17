@@ -15,7 +15,7 @@ const categories = [
     label: 'Corporate Governance & Board Advisory',
     headline: 'Strengthening boards through expert governance advisory',
     description:
-      'We provide tailored solutions to help boards function effectively and align with international best practices — from evaluations and audits to recruitment and succession.',
+      'We provide tailored solutions to help boards function effectively and align with international best practices — from board evaluations, board training to recruitment and succession planning.',
     services: [
       {
         icon: ClipboardCheck,
@@ -174,11 +174,7 @@ export default function Services() {
             <h1 className="text-display-lg lg:text-display-xl font-bold text-white leading-tight mb-6 max-w-3xl">
               Governance solutions built for your organization.
             </h1>
-            <p className="text-base lg:text-lg text-white/55 max-w-2xl leading-relaxed mb-8">
-              At EB Consulting, our primary focus is Corporate Governance &amp; Board Advisory,
-              supported by training, strategy, and compliance solutions that enhance
-              organizational leadership.
-            </p>
+            
             {/* Quick category nav */}
             <div className="flex flex-wrap gap-3">
               {categories.map((cat) => (

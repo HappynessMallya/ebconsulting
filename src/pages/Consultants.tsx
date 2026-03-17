@@ -22,8 +22,8 @@ const memberships = [
   },
   {
     icon: Globe,
-    title: 'PwC Africa Governance Board',
-    detail: 'Former Board Member',
+    title: 'National Board of Accountants and Auditors(NBAA)',
+    detail: 'Board Member',
   },
 ];
 
@@ -40,7 +40,7 @@ const experienceAreas = [
 
 const careerHighlights = [
   {
-    role: 'Principal Consultant & Founder',
+    role: 'Lead Consultant & Founder',
     org: 'Evolve Board Consulting',
     detail: 'Leading governance and strategy advisory firm serving East Africa.',
     current: true,
@@ -70,7 +70,7 @@ export default function Consultants() {
     <div className="pt-[72px]">
       <SEO
         title="Leadership — Dr. Mike Sallu | Evolve Board Consulting"
-        description="Meet Dr. Mike Sallu — Principal Consultant at Evolve Board Consulting. Over 35 years of governance, strategy, and board leadership experience across East Africa."
+        description="Meet Dr. Mike Sallu — Lead Consultant at Evolve Board Consulting. Over 35 years of governance, strategy, and board leadership experience across East Africa."
         keywords="Dr Mike Sallu, governance consultant Tanzania, board leadership expert, PwC Tanzania, Old Mutual Kenya"
       />
 
@@ -107,28 +107,13 @@ export default function Consultants() {
                   {/* Photo */}
                   <div className="aspect-[3/4] rounded-xl overflow-hidden bg-surface-muted mb-6">
                     <img
-                      src="/images/Mike-2.webp"
-                      alt="Dr. Mike Sallu — Principal Consultant, Evolve Board Consulting"
+                      src="/images/Mike-2.png"
+                      alt="Dr. Mike Sallu — Lead Consultant, Evolve Board Consulting"
                       className="w-full h-full object-cover object-top"
                     />
                   </div>
 
-                  {/* Credentials */}
-                  <div className="bg-surface-soft border border-gray-100 rounded-xl p-6 mb-4">
-                    <div className="flex items-center gap-2.5 mb-4">
-                      <GraduationCap className="w-4 h-4 text-secondary" />
-                      <h3 className="text-xs font-semibold uppercase tracking-wider text-ink-muted">Academic Credentials</h3>
-                    </div>
-                    <div className="space-y-3">
-                      {credentials.map((cred) => (
-                        <div key={cred.label} className="flex items-start gap-3">
-                          <span className="text-xs font-bold text-primary bg-primary-50 px-2 py-0.5 rounded mt-0.5 flex-shrink-0">{cred.label}</span>
-                          <span className="text-xs text-ink-muted leading-snug">{cred.detail}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
+               
                   {/* Contact CTA */}
                   <Link
                     to="/contact"
@@ -148,7 +133,7 @@ export default function Consultants() {
                 <h2 className="text-display-md lg:text-display-lg font-bold text-ink mb-2 leading-tight">
                   Dr. Mike Sallu
                 </h2>
-                <p className="text-base text-secondary font-semibold mb-5">Principal Consultant &amp; Founder</p>
+                <p className="text-base text-secondary font-semibold mb-5">Lead Consultant &amp; Founder</p>
                 <span className="section-rule block mb-7" />
                 <p className="text-base text-ink-muted leading-relaxed mb-4">
                   Dr. Mike Sallu is a seasoned consultant and business leader with over{' '}
@@ -171,44 +156,7 @@ export default function Consultants() {
                 </p>
               </RevealSection>
 
-              {/* Career Highlights */}
-              <RevealSection delay={120}>
-                <h3 className="text-sm font-semibold uppercase tracking-wider text-ink mb-6">Career Highlights</h3>
-                <div className="space-y-4">
-                  {careerHighlights.map((item, i) => (
-                    <div
-                      key={i}
-                      className="flex gap-4 p-5 rounded-xl border border-gray-100 hover:border-primary/20 hover:bg-primary-50/30 transition-all duration-200"
-                    >
-                      <div className={`w-2 h-2 rounded-full mt-2 flex-shrink-0 ${item.current ? 'bg-secondary' : 'bg-gray-300'}`} />
-                      <div>
-                        <div className="flex items-center flex-wrap gap-2 mb-1">
-                          <span className="text-sm font-semibold text-ink">{item.role}</span>
-                          {item.current && (
-                            <span className="text-[10px] font-bold uppercase tracking-wider bg-secondary/10 text-secondary px-2 py-0.5 rounded-full">Current</span>
-                          )}
-                        </div>
-                        <div className="text-xs font-semibold text-primary mb-1.5">{item.org}</div>
-                        <div className="text-sm text-ink-muted">{item.detail}</div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </RevealSection>
-
-              {/* Experience Areas */}
-              <RevealSection delay={160}>
-                <h3 className="text-sm font-semibold uppercase tracking-wider text-ink mb-6">Areas of Expertise</h3>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  {experienceAreas.map((area, i) => (
-                    <div key={i} className="flex items-center gap-3">
-                      <CheckCircle2 className="w-4 h-4 text-secondary flex-shrink-0" />
-                      <span className="text-sm text-ink-muted">{area}</span>
-                    </div>
-                  ))}
-                </div>
-              </RevealSection>
-
+            
               {/* Memberships */}
               <RevealSection delay={200}>
                 <h3 className="text-sm font-semibold uppercase tracking-wider text-ink mb-6">Professional Memberships</h3>
@@ -239,16 +187,9 @@ export default function Consultants() {
             <div className="max-w-3xl mx-auto text-center">
               <span className="eyebrow mb-4 block">Governance Philosophy</span>
               <blockquote className="text-xl lg:text-2xl font-medium text-ink leading-[1.55] mb-7 text-balance border-l-0">
-                "Effective governance is not about compliance alone — it is about building the
-                culture, capability, and character of an institution's leadership. Boards that
-                understand their role and embrace their responsibility are the foundation of
-                every great organization."
+                Dr. Sallu's governance approach is known for balancing compliance with value-driven leadership and cultural transformation to build highly effective and ethical boards."
               </blockquote>
-              <div className="flex flex-col items-center gap-1">
-                <span className="text-sm font-semibold text-ink">Dr. Mike Sallu</span>
-                <span className="text-xs text-ink-subtle">Principal Consultant, Evolve Board Consulting</span>
               </div>
-            </div>
           </RevealSection>
         </div>
       </section>
