@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, ChevronDown, Shield, TrendingUp, Users, Award, BookOpen, CheckCircle2, Globe } from 'lucide-react';
 import SEO from '../components/SEO';
@@ -8,13 +8,6 @@ const heroImages = [
   '/images/hero1.jpg',
   '/images/hero2.jpg',
   '/images/hero3.jpg',
-];
-
-const stats = [
-  { value: '35+', label: 'Years of Experience', description: 'Decades of proven governance expertise' },
-  { value: '50+', label: 'Organizations Served', description: 'Across East Africa and beyond' },
-  { value: '100+', label: 'Training Programmes', description: 'Delivered to boards and executives' },
-  { value: '500+', label: 'Board Members Trained', description: 'Across industries and sectors' },
 ];
 
 const services = [
@@ -67,97 +60,93 @@ const pillars = [
     number: '03',
     title: 'Ethical Foundation',
     description:
-      'All engagements are grounded in integrity, professionalism, and a commitment to building institutions that serve society with transparency.',
+      'All engagements are grounded in integrity, commitment, and trust — building institutions that serve society with transparency and accountability.',
   },
 ];
 
-const partners: { type: 'image' | 'text'; src?: string; ext?: string; name: string }[] = [
-  { type: 'image', src: '/images/partner1.png',  name: 'Client 1' },
-  { type: 'image', src: '/images/partner2.webp', name: 'Client 2' },
-  { type: 'image', src: '/images/partner3.png',  name: 'Client 3' },
-  { type: 'image', src: '/images/partner4.png',  name: 'Client 4' },
-  { type: 'image', src: '/images/partner5.png',  name: 'Client 5' },
-  { type: 'image', src: '/images/partner6.png',  name: 'Client 6' },
-  { type: 'image', src: '/images/partner7.jpeg', name: 'Client 7' },
-  { type: 'image', src: '/images/partner8.jpeg',  name: 'Client 8' },
-  { type: 'image', src: '/images/partner9.png',  name: 'Client 9' },
+const partners: { type: 'image' | 'text'; src?: string; name: string }[] = [
+  { type: 'image', src: '/images/partner1.png',  name: 'Partner 1' },
+  { type: 'image', src: '/images/partner2.webp', name: 'Partner 2' },
+  { type: 'image', src: '/images/partner3.png',  name: 'Partner 3' },
+  { type: 'image', src: '/images/partner4.png',  name: 'Partner 4' },
+  { type: 'image', src: '/images/partner5.png',  name: 'Partner 5' },
+  { type: 'image', src: '/images/partner6.png',  name: 'Partner 6' },
+  { type: 'image', src: '/images/partner7.jpeg', name: 'Partner 7' },
+  { type: 'image', src: '/images/partner8.jpg',  name: 'Partner 8' },
+  { type: 'image', src: '/images/partner9.png',  name: 'Partner 9' },
   { type: 'text',  name: '4C PROTRADE LIMITED' },
 ];
 
 export default function Home() {
   const [activeSlide, setActiveSlide] = useState(0);
-  const [prevSlide, setPrevSlide] = useState<number | null>(null);
+  // Use a ref so the interval doesn't restart on every slide change
+  const activeSlideRef = useRef(activeSlide);
+  activeSlideRef.current = activeSlide;
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setPrevSlide(activeSlide);
       setActiveSlide((prev) => (prev + 1) % heroImages.length);
     }, 5000);
     return () => clearInterval(interval);
-  }, [activeSlide]);
+  }, []); // runs once — stable interval
 
   return (
     <div className="pt-[72px]">
       <SEO
         title="Evolve Board Consulting — Governance & Strategy Advisory"
-        description="Evolve Board Consulting is a leading governance and strategy advisory firm helping organizations across East Africa build highly effective, ethical boards."
+        description="Evolve Board Consulting provides specialized board advisory services to listed and private companies, public sector entities, and donor-funded organizations across East Africa."
         keywords="board consulting, corporate governance, board development, governance training, East Africa, Tanzania"
       />
 
       {/* ─── HERO ─────────────────────────────────────────────────────────── */}
       <section className="relative min-h-[92vh] flex items-center bg-navy overflow-hidden">
 
-        {/* Slideshow images — fading layers */}
+        {/* Slideshow images */}
         {heroImages.map((src, i) => (
           <div
             key={src}
             className="absolute inset-0 transition-opacity duration-1000"
             style={{ opacity: i === activeSlide ? 1 : 0 }}
+            aria-hidden={i !== activeSlide}
           >
             <img
               src={src}
               alt=""
               aria-hidden="true"
+              fetchPriority={i === 0 ? 'high' : 'low'}
+              loading={i === 0 ? 'eager' : 'lazy'}
               className="w-full h-full object-cover object-center"
             />
           </div>
         ))}
 
-        {/* Dark overlay for text legibility */}
+        {/* Overlays */}
         <div className="absolute inset-0 bg-navy/70" />
-        {/* Subtle blue tint overlay */}
         <div className="absolute inset-0 bg-gradient-to-b from-primary/30 via-transparent to-navy/80" />
-        {/* Bottom fade */}
         <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-navy to-transparent" />
 
         {/* Content — centered */}
         <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32">
           <div className="flex flex-col items-center text-center max-w-4xl mx-auto">
-
-            {/* Eyebrow */}
             <div className="flex items-center justify-center gap-3 mb-8 animate-fade-in">
               <span className="block w-8 h-px bg-secondary flex-shrink-0" />
               <span className="eyebrow">Governance &amp; Strategy Advisory</span>
               <span className="block w-8 h-px bg-secondary flex-shrink-0" />
             </div>
 
-            {/* Headline */}
             <h1 className="text-[2.8rem] sm:text-6xl lg:text-7xl xl:text-[5.25rem] font-bold text-white leading-[1.06] tracking-[-0.025em] mb-7 animate-slide-up text-balance">
               Building Highly{' '}
               <span className="text-primary-light">Effective</span> and Ethical Boards.
             </h1>
 
-            {/* Subtitle */}
             <p
               className="text-base sm:text-lg lg:text-xl text-white/60 max-w-2xl leading-relaxed mb-10 animate-slide-up"
               style={{ animationDelay: '0.1s' }}
             >
               We provide specialized board advisory services to listed and private companies,
-              public sector entities, and donor-funded organizations. The firm comprises highly
-              qualified professionals uniquely positioned to provide relevant and impactful solutions.
+              public sector entities, and donor-funded organizations.
             </p>
 
-            {/* CTAs */}
             <div
               className="flex flex-col xs:flex-row justify-center gap-4 animate-slide-up"
               style={{ animationDelay: '0.2s' }}
@@ -184,7 +173,7 @@ export default function Home() {
           {heroImages.map((_, i) => (
             <button
               key={i}
-              onClick={() => { setPrevSlide(activeSlide); setActiveSlide(i); }}
+              onClick={() => setActiveSlide(i)}
               aria-label={`Go to slide ${i + 1}`}
               className={`transition-all duration-300 rounded-full ${
                 i === activeSlide
@@ -198,23 +187,6 @@ export default function Home() {
         {/* Scroll indicator */}
         <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 animate-pulse-slow">
           <ChevronDown className="w-4 h-4 text-white/30" />
-        </div>
-      </section>
-
-      {/* ─── STATISTICS BAR ───────────────────────────────────────────────── */}
-      <section className="bg-white border-b border-gray-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 lg:grid-cols-4 divide-x divide-y lg:divide-y-0 divide-gray-100">
-            {stats.map((stat, i) => (
-              <RevealSection key={i} delay={i * 80} className="px-6 lg:px-10 py-10">
-                <div className="text-[2.4rem] lg:text-[2.8rem] font-bold text-primary leading-none mb-1.5 tracking-tight">
-                  {stat.value}
-                </div>
-                <div className="text-sm font-semibold text-ink mb-1">{stat.label}</div>
-                <div className="text-xs text-ink-muted hidden sm:block">{stat.description}</div>
-              </RevealSection>
-            ))}
-          </div>
         </div>
       </section>
 
@@ -235,9 +207,11 @@ export default function Home() {
                 across East Africa.
               </p>
               <p className="text-base text-ink-muted leading-relaxed mb-8">
-                Our work is grounded in three core principles — <strong className="text-ink font-semibold">Integrity</strong>,{' '}
-                <strong className="text-ink font-semibold">Innovation</strong>, and{' '}
-                <strong className="text-ink font-semibold">Professionalism</strong> — ensuring every
+                Our work is grounded in four core values —{' '}
+                <strong className="text-ink font-semibold">Commitment</strong>,{' '}
+                <strong className="text-ink font-semibold">Teamwork</strong>,{' '}
+                <strong className="text-ink font-semibold">Integrity</strong>, and{' '}
+                <strong className="text-ink font-semibold">Trust</strong> — ensuring every
                 engagement delivers lasting, measurable impact.
               </p>
               <Link
@@ -249,26 +223,24 @@ export default function Home() {
               </Link>
             </RevealSection>
 
-            {/* Right — Visual accent blocks */}
+            {/* Right — Visual stat blocks (no duplication with a separate bar) */}
             <RevealSection delay={150}>
-              <div className="relative">
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="bg-primary rounded-lg p-8 flex flex-col justify-end min-h-[220px]">
-                    <div className="text-4xl font-bold text-white mb-1">35+</div>
-                    <div className="text-primary-100 text-sm font-medium">Years combined experience in governance</div>
-                  </div>
-                  <div className="bg-white rounded-lg p-8 border border-gray-100 flex flex-col justify-end min-h-[220px] shadow-sm">
-                    <div className="text-4xl font-bold text-ink mb-1">50+</div>
-                    <div className="text-ink-muted text-sm font-medium">Organizations served across East Africa</div>
-                  </div>
-                  <div className="bg-white rounded-lg p-8 border border-gray-100 flex flex-col justify-end min-h-[160px] shadow-sm">
-                    <div className="text-4xl font-bold text-ink mb-1">100+</div>
-                    <div className="text-ink-muted text-sm font-medium">Board training programmes delivered</div>
-                  </div>
-                  <div className="bg-secondary rounded-lg p-8 flex flex-col justify-end min-h-[160px]">
-                    <div className="text-4xl font-bold text-white mb-1">15+</div>
-                    <div className="text-white/80 text-sm font-medium">Specialized governance services</div>
-                  </div>
+              <div className="grid grid-cols-2 gap-4">
+                <div className="bg-primary rounded-xl p-8 flex flex-col justify-end min-h-[200px]">
+                  <div className="text-4xl font-bold text-white mb-1">35+</div>
+                  <div className="text-primary-100 text-sm font-medium leading-snug">Years combined experience in governance</div>
+                </div>
+                <div className="bg-white rounded-xl p-8 border border-gray-100 flex flex-col justify-end min-h-[200px] shadow-sm">
+                  <div className="text-4xl font-bold text-ink mb-1">50+</div>
+                  <div className="text-ink-muted text-sm font-medium leading-snug">Organizations served across East Africa</div>
+                </div>
+                <div className="bg-white rounded-xl p-8 border border-gray-100 flex flex-col justify-end min-h-[150px] shadow-sm">
+                  <div className="text-4xl font-bold text-ink mb-1">100+</div>
+                  <div className="text-ink-muted text-sm font-medium leading-snug">Board training programmes delivered</div>
+                </div>
+                <div className="bg-secondary rounded-xl p-8 flex flex-col justify-end min-h-[150px]">
+                  <div className="text-4xl font-bold text-white mb-1">500+</div>
+                  <div className="text-white/80 text-sm font-medium leading-snug">Board members trained across sectors</div>
                 </div>
               </div>
             </RevealSection>
@@ -290,7 +262,7 @@ export default function Home() {
               to="/services"
               className="flex-shrink-0 inline-flex items-center gap-2 text-primary text-sm font-semibold hover:text-primary-dark transition-colors group"
             >
-              View all 15 services
+              View all services
               <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
             </Link>
           </RevealSection>
@@ -349,6 +321,7 @@ export default function Home() {
                   <img
                     src="/images/Mike-2.png"
                     alt="Dr. Mike Sallu — Principal Consultant, Evolve Board Consulting"
+                    loading="lazy"
                     className="w-full h-full object-cover object-top"
                   />
                 </div>
@@ -375,7 +348,6 @@ export default function Home() {
               </h2>
               <p className="text-base text-secondary font-semibold mb-6">Principal Consultant &amp; Founder</p>
               <span className="section-rule mb-7 block" />
-
               <p className="text-base text-ink-muted leading-relaxed mb-5">
                 Dr. Mike Sallu is a seasoned business leader and governance expert with over{' '}
                 <strong className="text-ink font-semibold">35 years of experience</strong> spanning
@@ -388,7 +360,6 @@ export default function Home() {
                 A member of the Chartered Governance Institute (UK &amp; Ireland) and the Institute of
                 Directors Tanzania, Dr. Sallu brings unmatched credibility to every engagement.
               </p>
-
               <Link
                 to="/consultants"
                 className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-white text-sm font-semibold rounded hover:bg-primary-dark transition-colors duration-200"
@@ -415,15 +386,11 @@ export default function Home() {
             </p>
           </RevealSection>
 
-          {/* Carousel — overflows the section for edge-to-edge feel */}
+          {/* Infinite marquee carousel */}
           <div className="relative overflow-hidden -mx-4 sm:-mx-6 lg:-mx-8">
-            {/* Left fade mask */}
             <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-surface-soft to-transparent z-10 pointer-events-none" />
-            {/* Right fade mask */}
             <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-surface-soft to-transparent z-10 pointer-events-none" />
-
-            <div className="marquee-track px-0">
-              {/* Render the list twice for seamless infinite loop */}
+            <div className="marquee-track">
               {[...partners, ...partners].map((partner, i) => (
                 <div
                   key={i}
@@ -434,6 +401,7 @@ export default function Home() {
                     <img
                       src={partner.src}
                       alt={partner.name}
+                      loading="lazy"
                       className="max-h-16 max-w-[140px] w-auto object-contain px-3"
                     />
                   ) : (
@@ -478,7 +446,8 @@ export default function Home() {
                 Ready to strengthen your board's governance?
               </h2>
               <p className="text-white/60 text-base leading-relaxed">
-                Speak with our team today to explore how Evolve Board Consulting can support your organization's governance journey.
+                Speak with our team today to explore how Evolve Board Consulting can support
+                your organization's governance journey.
               </p>
             </RevealSection>
             <RevealSection delay={100} className="flex lg:justify-end">
