@@ -152,8 +152,9 @@ export default function Home() {
               className="text-base sm:text-lg lg:text-xl text-white/60 max-w-2xl leading-relaxed mb-10 animate-slide-up"
               style={{ animationDelay: '0.1s' }}
             >
-              We partner with listed companies, public institutions, and donor-funded organizations
-              across East Africa to strengthen governance, accountability, and strategic leadership.
+              We provide specialized board advisory services to listed and private companies,
+              public sector entities, and donor-funded organizations. The firm comprises highly
+              qualified professionals uniquely positioned to provide relevant and impactful solutions.
             </p>
 
             {/* CTAs */}
